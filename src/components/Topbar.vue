@@ -4,8 +4,8 @@
       Resumer
     </div>
     <div class="actions">
-      <button>注册</button>
-      <button>登录</button>
+      <el-button type="primary">注册</el-button>
+      <el-button>登录</el-button>
     </div>
   </div>
 </template>
@@ -14,7 +14,9 @@
   #topbar{
     display: flex;
     justify-content: space-between;
-    padding: 16px;
+    align-items: center;
+    padding: 8px;
+    font-size:20px;
   }
 </style>
 
