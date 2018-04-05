@@ -49,7 +49,7 @@ main{
     margin:16px 8px 16px 16px;
     background: #fff;
 		box-shadow: 0 0 3px hsla(0,0,0,0.5);
-		overflow: hidden;
+		overflow: auto;
   }
   > .preview{
     flex: 1;
