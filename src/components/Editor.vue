@@ -14,32 +14,43 @@
 				<ProfileEditor v-bind:profile="profile"/>
 			</li>
 			<li v-bind:class="{active: currentTab === 1}">
-				<WorkExperienceEditor v-bind:workExperience="workExperience"/>
+				<ArrayEditor v-bind:items="workExperience" v-bind:labels="{company:'公司',content:'工作内容'}" title="工作经历"/>
 			</li>
 			<li v-bind:class="{active: currentTab === 2}">
-				<h2>教育背景</h2>
+				<ArrayEditor v-bind:items="educationBg" v-bind:labels="{school:'学校',duration:'时间',degree:'学位'}" title="教育背景"/>
 			</li>
 			<li v-bind:class="{active: currentTab === 3}">
-				<h2>个人技能</h2>
+				<ArrayEditor v-bind:items="skills" v-bind:labels="{name:'技能特长',content:'技能描述'}" title="技能清单"/>
 			</li>
 			<li v-bind:class="{active: currentTab === 4}">
-				<h2>项目经验</h2>
+				<ArrayEditor v-bind:items="projects" v-bind:labels="{name:'项目名称',content:'项目描述'}" title="项目经验"/>
 			</li>
 			<li v-bind:class="{active: currentTab === 5}">
 				<h2>联系方式</h2>
+			  <el-form>
+		      <el-form-item label="QQ">
+			      <el-input v-model="contacts.qq"></el-input>
+		      </el-form-item>
+		      <el-form-item label="微信">
+			      <el-input v-model="contacts.wechat"></el-input>
+		      </el-form-item>
+		      <el-form-item label="邮箱">
+			      <el-input v-model="contacts.email"></el-input>
+		      </el-form-item>
+					<el-form-item label="电话">
+			      <el-input v-model="contacts.phone"></el-input>
+		      </el-form-item>
+	      </el-form>
 			</li>
-			<!-- <li v-for="i in [0,1,2,3,4,5]" v-bind:class="{active:currentTab === i}">
-				Tab {{i+1}}
-			</li> -->
 		</ol>
 	</div>
 </template>
 
 <script>
 import ProfileEditor from './ProfileEditor'
-import WorkExperienceEditor from './WorkExperienceEditor'
+import ArrayEditor from './ArrayEditor'
 export default {
-	components:{ ProfileEditor,WorkExperienceEditor },
+	components:{ ProfileEditor,ArrayEditor },
   data() {
     return {
       currentTab: 0,
@@ -51,7 +62,22 @@ export default {
 			},
 			workExperience:[
 				{company:'',content:''},
-			]
+			],
+			educationBg:[
+				{school:'',duration:'',degree:''}
+			],
+			skills:[
+				{name:'',content:''}
+			],
+			projects:[
+				{name:'',content:''}
+			],
+			contacts:{
+				qq:'',
+				wechat:'',
+				email:'',
+				phone:''
+			}
     }
   },
 	methods:{
