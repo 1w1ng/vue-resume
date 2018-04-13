@@ -1,33 +1,37 @@
 <template>
   <div id="topbar">
-    <div class="logo">
-      Resumer
-    </div>
-    <div class="actions">
-      <el-button type="primary">注册</el-button>
-      <el-button>登录</el-button>
-      <el-button v-on:click="preview" type="primary" round>预览</el-button>
+    <div class="wrapper">
+      <span class="logo">Resumer</span>
     </div>
   </div>
 </template>
 
-<style lang="scss">
+<script>
+export default {
+  name: 'Topbar'
+}
+</script>
+
+<style>
   #topbar{
+    background:#ffffff;
+    box-shadow:0 1px 3px 0 rgba(0,0,0,0.25);
+  }
+  #topbar>.wrapper{
+    min-width: 1024px;
+    max-width: 1440px;
+    margin: 0 auto;
+    height:64px;
+  }
+  #topbar>.wrapper{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 8px;
-    font-size:20px;
+    padding: 0 16px;
+  }
+  #topbar .logo{
+    font-size:24px;
+    color:#000000;
   }
 </style>
-
-<script>
-  export default {
-    methods:{
-      preview(){
-        this.$emit('preview')
-      }
-    }  
-  }
-</script>
 
