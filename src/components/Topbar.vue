@@ -2,8 +2,19 @@
   <div id="topbar">
     <div class="wrapper">
       <span class="logo">Resumer</span>
+
       <div class="actions">
-        <el-button type="primary">保存</el-button>
+        <div v-if="logined" class="userActions">
+          <span>你好，{{user.username}}</span>
+          <a class="button" href="#" @click.prevent="signOut">登出</a>
+        </div>
+        <div v-else class="userActions">
+          <a class="button primary" href="#" @click.prevent="signUpDialogVisible = true">注册</a>
+          <MyDialog title="注册" :visible="signUpDialogVisible" @close="signUpDialogVisible = false">
+            <SignUpForm @success="signIn($event)"/>
+          </MyDialog>
+          <a class="button" href="#">登录</a>
+        </div>
         <el-button type="primary">预览</el-button>
       </div>
     </div>
@@ -11,8 +22,38 @@
 </template>
 
 <script>
+import MyDialog from './MyDialog'
+import SignUpForm from './SignUpForm'
+import AV from '../lib/leancloud'
 export default {
-  name: 'Topbar'
+  name: 'Topbar',
+  data(){
+    return{
+      signUpDialogVisible: false
+    }
+  },
+  computed:{
+    user(){
+      return this.$store.state.user
+    },
+    logined(){
+      return this.user.id
+    }
+  },
+  components:{
+    MyDialog,
+    SignUpForm
+  },
+  methods:{
+    signOut(){
+      AV.User.logOut()
+      this.$store.commit('removeUser')
+    },
+    signIn(user){
+      this.signUpDialogVisible = false
+      this.$store.commit('setUser', user)
+    }
+  }
 }
 </script>
 
@@ -35,6 +76,12 @@ export default {
     .logo{
       font-size:24px;
       color:#000000;
+    }
+  }
+  .actions{
+    display: flex;
+    .userActions{
+      margin-right: 3em;
     }
   }
 </style>
