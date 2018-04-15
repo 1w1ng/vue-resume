@@ -5,8 +5,8 @@
 
       <div class="actions">
         <div v-if="logined" class="userActions">
-          <span class="welcome">你好，{{user.username}}</span>
-          <a class="button" href="#" @click.prevent="signOut">登出</a>
+          <span class="welcome">Hello，{{user.username}}</span>
+          <el-button type="danger" href="#" @click.prevent="signOut">登出</el-button>
         </div>
         <div v-else class="userActions">
           <el-button type="primary" href="#" @click.prevent="signUpDialogVisible = true">注册</el-button>
@@ -89,9 +89,10 @@ export default {
   .actions{
     display: flex;
     .userActions{
-      margin-right: 3em;
+      margin-right: 2em;
       .welcome{
-        margin-right: .5em;
+        margin-right: 2em;
+        color:#999;
       }
     }
   }

@@ -70,7 +70,7 @@ export default {
     overflow: auto;
     > nav{
       width: 80px;
-      background: black;
+      background: #409EFF;
       color: white;
       > ol {
         > li{
