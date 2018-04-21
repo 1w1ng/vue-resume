@@ -1,84 +1,65 @@
 <template>
+  <div>
     <div class="page">
       <header>
-        <!--顶部导航栏模块-->
         <Topbar/>
       </header>
       <main>
-        <!--简历编辑模块-->
-        <ResumeEditor/>
-        <!--简历预览模块-->
-        <ResumePreview/>
+
       </main>
     </div>
+  </div>
 </template>
 
 <script>
+  import 'normalize.css/normalize.css'
+  import './assets/reset.css'
 
-import 'normalize.css/normalize.css'
-import './assets/reset.css'
+  import Topbar from './components/Topbar'
+  import icons from './assets/icons'
 
-import Topbar from './components/Topbar'
-import ResumeEditor from './components/ResumeEditor'
-import ResumePreview from './components/ResumePreview'
-import icons from './assets/icons'
+  import store from './store/index'
+  import AV from './lib/leancloud'
+  import getAVUser from './lib/getAVUser'
 
-import store from './store/index'
-import AV from './lib/leancloud'
-import getAVUser from './lib/getAVUser'
+  document.body.insertAdjacentHTML('afterbegin', icons)
 
-export default {
-  name: 'app',
-  store,
-  components: {Topbar, ResumeEditor, ResumePreview},
-  created(){
-    document.body.insertAdjacentHTML('afterbegin',icons)
-    let state = localStorage.getItem('state')
-    if(state){
-      state = JSON.parse(state)
+  export default {
+    name: 'app',
+    store,
+    components: { Topbar},
+    created(){
+      document.body.insertAdjacentHTML('afterbegin', icons)
+      let state = localStorage.getItem('state')
+      if(state) {
+        state = JSON.parse(state)
+      }
+      this.$store.commit('initState', state)
+      this.$store.commit('setUser', getAVUser())
     }
-    this.$store.commit('initState',state)
-    this.$store.commit('setUser', getAVUser())
   }
-}
 </script>
 
-<style>
+<style lang="scss">
   .page{
-     /*高度设置为浏览器可视化窗口高度，布局方式为flex，方向是垂直*/
     height: 100vh;
     display: flex;
     flex-direction: column;
     background: #EAEBEC;
-  }
-  .page>main{
-    flex-grow: 1;  
-  }
-  .page>main{
-    min-width: 1024px;
-    max-width: 1440px;
-    margin-top: 16px;
-    margin-bottom: 16px;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 16px;
-    width: 100%;
-    align-self: center;
-  }
-  #resumeEditor{
-    width: 35%;
-    background: #444;
-  }
-  #resumePreview{
-    flex-grow: 1;
-    margin-left: 16px;
-    background: #777;
-  }
-  svg.icon{
-    height: 1em;
-    width:1em;
-    fill:currentColor;
-    vertical-align: -0.1em;
-    font-size:16px;
+    >main{
+      flex-grow: 1;  
+    }
+    /*设置响应式*/
+    >main{
+      min-width: 1024px;
+      max-width: 1440px;
+      margin-top: 16px;
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 16px;
+      width: 100%;
+      align-self: center;
+    }
   }
 </style>
