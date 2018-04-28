@@ -1,7 +1,8 @@
 <template>
   <div id="topbar">
-      <span class="logo">Resumer</span>
-
+    <div class="logo">
+      <span>Resumer</span>
+    </div>
       <div class="actions">
         <el-button @click="loginDialogVisible = true" size="small" v-if="!currentUser">登录</el-button>
         <el-button type="danger" plain @click="signUpDialogVisible = true" size="small" v-if="!currentUser">注册</el-button>
@@ -199,7 +200,7 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
   #topbar{
     display: flex;
     justify-content: space-between;

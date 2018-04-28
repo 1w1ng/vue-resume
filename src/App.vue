@@ -125,10 +125,17 @@
       display: none;
     }
     #exit-preview{
-      display: inline-block;
+      display: block;
       position: fixed;
-      right: 32px;
-      bottom: 32px;
+      top: 12px;
+      left: 12px;
+    }
+    #print{
+      display: block;
+      position: fixed;
+      top: 44px;
+      left: 12px;
+      margin-left: 0;
     }
     main{
       #editor{
