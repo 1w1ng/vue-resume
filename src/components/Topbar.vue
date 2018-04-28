@@ -16,7 +16,7 @@
             <el-input v-model="form.username"></el-input>
           </el-form-item>
           <el-form-item label="密码">
-            <el-input @keyup.enter.native="signUp" v-model="form.password"></el-input>
+            <el-input type="password" @keyup.enter.native="signUp" v-model="form.password"></el-input>
           </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer">
@@ -30,7 +30,7 @@
             <el-input v-model="loginForm.username"></el-input>
           </el-form-item>
           <el-form-item label="密码">
-            <el-input @keyup.enter.native="login" v-model="loginForm.password"></el-input>
+            <el-input type="password" @keyup.enter.native="login" v-model="loginForm.password"></el-input>
           </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer">
@@ -58,8 +58,8 @@ export default {
         password: ''
       },
       loginForm:{
-        username: '2' || '',
-        password: '2' || ''
+        username: '333' || '',
+        password: '333' || ''
       },
       formLabelWidth: '120px',
       resumeContent: ''
